@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S30. Studio Games 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lime: #A8C832;
+    --lime-dark: #8aaa1a;
+    --black: #0a0a0a;
+    --dark: #111;
+    --dark2: #1a1a1a;
+    --dark3: #222;
+    --mid: #333;
+    --grey: #888;
+    --light: #f5f5f5;
+    --white: #fff;
+    --yellow: #FCDC08;
+    --blue: #1565c0;
+    --purple: #7b1fa2;
+    --green: #2e7d32;
+    --font-display: 'Bebas Neue', 'Oswald', sans-serif;
+    --font-body: 'Rajdhani', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--black); color: var(--white); overflow-x: hidden; }
+
+  /* ---- HERO ---- */
+  .hero {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    padding: 60px 60px 50px;
+    border-bottom: 3px solid var(--yellow);
+  }
+  .hero::before {
+    content: '2026';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: var(--font-display);
+    font-size: 300px;
+    font-weight: 900;
+    color: rgba(168,200,50,0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -10px;
+  }
+  .hero-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+  .hero-tag { color: var(--yellow); font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 10px; }
+  .hero h1 { font-family: var(--font-display); font-size: 96px; font-weight: 900; text-transform: uppercase; line-height: 0.8; letter-spacing: 2px; }
+  .hero h1 em { color: var(--lime); font-style: normal; }
+  .hero-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .pill { background: var(--dark2); border: 1px solid #2a2a2a; padding: 8px 16px; border-radius: 0px; font-size: 12px; font-weight: 600; color: var(--grey); display: flex; align-items: center; gap: 8px; font-family: var(--font-display); letter-spacing: 1px; text-transform: uppercase; }
+  .pill span { color: var(--white); }
+  .pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--yellow); flex-shrink: 0; }
+
+  /* ---- TABS ---- */
+  .tabs-bar {
+    background: var(--dark);
+    border-bottom: 2px solid var(--lime);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--grey);
+    padding: 16px 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+    top: 1px;
+  }
+  .tab-btn:hover { color: var(--white); }
+  .tab-btn.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+  .tab-num { font-size: 10px; color: var(--dark3); margin-right: 6px; font-weight: 400; }
+  .tab-btn.active .tab-num { color: var(--yellow); opacity: 0.6; }
+
+  /* ---- PANELS ---- */
+  .panel { display: none; padding: 0; }
+  .panel.active { display: block; }
+  .panel-inner { max-width: 1000px; margin: 0 auto; padding: 48px 60px 80px; }
+
+  /* ---- SHARED COMPONENTS ---- */
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white);
+    border-left: 5px solid var(--lime);
+    padding-left: 16px;
+    margin: 44px 0 18px;
+    line-height: 0.9;
+  }
+  .section-title:first-child { margin-top: 0; }
+  .sub-title {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--yellow);
+    margin: 24px 0 10px;
+  }
+  p { color: #ccc; line-height: 1.7; margin-bottom: 10px; font-size: 15px; font-family: var(--font-body); letter-spacing: 0.3px; }
+  ul { padding-left: 20px; margin-bottom: 12px; }
+  ul li { color: #ccc; margin-bottom: 6px; font-size: 15px; line-height: 1.6; font-family: var(--font-body); letter-spacing: 0.3px; }
+  strong { color: var(--white); }
+  .callout {
+    background: rgba(168,200,50,0.07);
+    border-left: 3px solid var(--lime);
+    padding: 14px 18px;
+    border-radius: 0;
+    margin: 14px 0;
+    font-size: 14px;
+    color: #ccc;
+    font-family: var(--font-body);
+    letter-spacing: 0.3px;
+  }
+  .callout.yellow { background: rgba(240,180,41,0.07); border-color: var(--yellow); }
+  .callout strong { color: var(--lime); }
+  .callout.yellow strong { color: var(--yellow); }
+  .divider { border: none; border-top: 1px solid #222; margin: 36px 0; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 14px 0; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 14px 0; }
+  .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 14px 0; }
+  @media (max-width: 700px) {
+    .grid2, .grid3, .grid4 { grid-template-columns: 1fr; }
+    .panel-inner { padding: 32px 24px 60px; }
+    .hero { padding: 40px 24px 36px; }
+    .hero h1 { font-size: 48px; }
+  }
+  .card {
+    background: var(--dark2);
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card h4 { font-family: var(--font-display); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--lime); margin-bottom: 10px; line-height: 1; }
+  .card p, .card li { font-size: 13px; color: #bbb; }
+  .card.light { background: #161616; border-color: #2a2a2a; }
+
+  /* ---- TABLE ---- */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 13px; }
+  th { background: var(--lime); color: var(--black); padding: 10px 12px; text-align: left; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1.5px; }
+  td { padding: 10px 12px; border-bottom: 1px solid #1e1e1e; vertical-align: top; color: #ccc; }
+  tr:hover td { background: #161616; }
+  td strong { color: var(--white); }
+  .time-cell { font-family: var(--font-display); font-weight: 700; color: var(--yellow); font-size: 15px; white-space: nowrap; letter-spacing: 1px; }
+  .section-row td { background: var(--dark2) !important; color: var(--yellow) !important; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border: none; }
+  .highlight-row td { background: rgba(168,200,50,0.05) !important; }
+
+  /* ---- BADGES ---- */
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 0px; font-size: 11px; font-weight: 700; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; }
+  .badge.open { background: rgba(46,125,50,0.2); color: #66bb6a; border: 1px solid rgba(46,125,50,0.3); }
+  .badge.pro { background: rgba(168,200,50,0.15); color: var(--lime); border: 1px solid rgba(168,200,50,0.3); }
+  .badge.nsw { background: rgba(21,101,192,0.2); color: #64b5f6; border: 1px solid rgba(21,101,192,0.3); }
+  .badge.qld { background: rgba(230,81,0,0.2); color: #ff9800; border: 1px solid rgba(230,81,0,0.3); }
+
+  /* ---- WOD TAGS ---- */
+  .wod-tag { display: inline-block; padding: 2px 8px; border-radius: 0px; font-size: 10px; font-family: var(--font-display); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .wod-tag.w1 { background: rgba(46,125,50,0.3); color: #81c784; }
+  .wod-tag.w2 { background: rgba(21,101,192,0.3); color: #64b5f6; }
+  .wod-tag.w3 { background: rgba(123,31,162,0.3); color: #ce93d8; }
+  .wod-tag.admin { background: #2a2a2a; color: #888; }
+  .wod-tag.brk { background: rgba(230,81,0,0.3); color: #ff9800; }
+
+  /* ---- SCORECARD ---- */
+  .scorecard {
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .scorecard-head {
+    background: var(--yellow);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scorecard-head h3 { font-family: var(--font-display); font-size: 28px; font-weight: 900; color: var(--black); text-transform: uppercase; margin: 0; letter-spacing: 1px; line-height: 1; }
+  .scorecard-head .wod-sub { font-size: 11px; font-weight: 700; color: rgba(0,0,0,0.55); text-transform: uppercase; letter-spacing: 1px; text-align: right; }
+  .scorecard-body { background: var(--dark2); padding: 22px; }
+  .field-grid { display: grid; gap: 12px; margin-bottom: 14px; }
+  .field-grid.c2 { grid-template-columns: 1fr 1fr; }
+  .field-grid.c3 { grid-template-columns: 1fr 1fr 1fr; }
+  .field-grid.c4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  .field-grid.c6 { grid-template-columns: repeat(6,1fr); }
+  @media(max-width:600px) { .field-grid.c3,.field-grid.c4,.field-grid.c6 { grid-template-columns: 1fr 1fr; } }
+  .field label { display: block; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--grey); margin-bottom: 5px; font-family: var(--font-display); }
+  .field .line { border-bottom: 2px solid #333; height: 30px; }
+  .field .box { border: 2px solid #333; border-radius: 5px; height: 40px; background: #161616; }
+  .field .box.score { border-color: var(--lime); background: rgba(168,200,50,0.08); }
+  .score-section { background: rgba(168,200,50,0.05); border: 1px solid rgba(168,200,50,0.15); border-radius: 6px; padding: 16px; margin: 14px 0; }
+  .score-section h4 { font-family: var(--font-display); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--yellow); margin-bottom: 12px; }
+  .judge-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 14px; border-top: 1px solid #222; margin-top: 14px; }
+  .notes-area .note-line { border-bottom: 1px solid #2a2a2a; height: 24px; margin-bottom: 6px; }
+
+  /* ---- LEADERBOARD TABLE ---- */
+  .lb-table th { background: var(--lime); color: var(--black); font-size: 10px; letter-spacing: 3px; }
+  .lb-table td { font-size: 12px; }
+  .lb-rank { font-family: var(--font-display); font-weight: 900; font-size: 20px; color: var(--white); letter-spacing: 2px; }
+  .lb-score { text-align: center; font-weight: 700; color: var(--white); }
+  .lb-total { text-align: center; font-family: var(--font-display); font-weight: 900; font-size: 22px; color: var(--lime); background: rgba(168,200,50,0.1) !important; letter-spacing: 1px; }
+  .rank-gold td { background: rgba(255,215,0,0.05) !important; }
+  .rank-silver td { background: rgba(192,192,192,0.04) !important; }
+  .rank-bronze td { background: rgba(205,127,50,0.04) !important; }
+
+  /* ---- SOCIAL CARDS ---- */
+  .post-card {
+    background: var(--dark2);
+    border: 1px solid #222;
+    border-left: 4px solid var(--lime);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    margin-bottom: 10px;
+  }
+  .post-card.edm { border-left-color: var(--yellow); }
+  .post-card.story { border-left-color: var(--purple); }
+  .post-card.reel { border-left-color: var(--blue); }
+  .post-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+  .ptag { display: inline-block; padding: 2px 8px; border-radius: 0px; font-size: 10px; font-weight: 700; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; }
+  .ptag.feed { background: rgba(168,200,50,0.2); color: var(--lime); }
+  .ptag.story { background: rgba(123,31,162,0.3); color: #ce93d8; }
+  .ptag.reel { background: rgba(21,101,192,0.3); color: #64b5f6; }
+  .ptag.edm { background: rgba(240,180,41,0.2); color: var(--yellow); }
+  .ptag.both { background: rgba(168,200,50,0.15); color: var(--lime); }
+  .pdate { font-size: 11px; color: var(--grey); font-weight: 600; }
+  .ptitle { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); margin-bottom: 6px; letter-spacing: 1px; text-transform: uppercase; line-height: 1.1; }
+  .pvisual { font-size: 12px; color: var(--grey); margin-top: 6px; }
+  .pcaption {
+    font-size: 12.5px;
+    color: #bbb;
+    background: #161616;
+    padding: 14px 16px;
+    border-radius: 6px;
+    margin-top: 10px;
+    line-height: 1.75;
+    font-style: italic;
+    border: 1px solid #222;
+    white-space: pre-line;
+  }
+  .week-header {
+    background: var(--dark2);
+    border: 1px solid #2a2a2a;
+    border-left: 4px solid var(--lime);
+    border-radius: 0 8px 0 0;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 28px;
+    margin-bottom: 0;
+  }
+  .week-header h3 { font-family: var(--font-display); font-size: 20px; font-weight: 800; text-transform: uppercase; color: var(--white); margin: 0; letter-spacing: 1px; line-height: 1; }
+  .week-theme { font-size: 11px; color: var(--grey); font-style: italic; }
+
+  /* ---- EDM ---- */
+  .edm-block { border: 1px solid #2a2a2a; border-radius: 10px; overflow: hidden; margin: 20px 0; }
+  .edm-head { background: var(--dark2); padding: 16px 22px; border-bottom: 1px solid #2a2a2a; }
+  .edm-head .elabel { color: var(--yellow); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-family: var(--font-display); margin-bottom: 4px; }
+  .edm-head h3 { color: var(--white); font-family: var(--font-display); font-size: 24px; font-weight: 800; text-transform: uppercase; margin: 0; letter-spacing: 1px; line-height: 1; }
+  .edm-body { background: #161616; padding: 24px; }
+  .edm-meta { font-size: 12px; color: var(--grey); margin-bottom: 4px; }
+  .edm-meta strong { color: var(--white); }
+  .edm-copy { font-size: 13.5px; color: #ccc; line-height: 1.8; }
+  .edm-copy p { margin-bottom: 12px; }
+  .edm-cta { display: inline-block; background: var(--yellow); color: var(--black); padding: 12px 28px; border-radius: 0px; font-family: var(--font-display); font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: 2px; margin: 10px 0; }
+
+  /* ---- ASSET TABLE ---- */
+  .asset-table th { background: var(--dark3); color: var(--lime); }
+  .asset-table td:last-child { color: var(--grey); }
+
+  /* ---- PRINT ---- */
+  @media print {
+    .tabs-bar, .hero::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">S30 Presents</div>
+  <div class="hero-top">
+    <div>
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAIcA8ADASIAAhEBAxEB/8QAHQABAAEFAQEBAAAAAAAAAAAAAAECAwQFBgcICf/EAFQQAAIBAgQDBAYECQkFBgUFAAABAgMRBAUhMQYSQQdRYXETFCKBkdEIFTKhFyMkM0JScrHBFjRUYnSSk5ThJUNFU1U1RGOCg/AmRmRzhDZWosLx/8QAGwEBAQEBAQEBAQAAAAAAAAAAAAECAwQFBgf/xAA2EQEBAAECBAQDBwMDBQEAAAAAAQIDEQQSITEFE0FRFCKRBjJCUlNhcRWBsaHB0SRDYuHw8f/aAAwDAQACEQMRAD8A+MgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/9k=" alt="Studio Games 2026" style="height:180px; width:auto; display:block; margin-bottom:4px; margin-left:-8px;">
+    </div>
+    <div style="text-align:right; padding-top:8px;">
+      <div style="font-family:var(--font-display); font-size:11px; color:var(--yellow); letter-spacing:6px; text-transform:uppercase; margin-bottom:12px;">MASTER EVENT HUB</div>
+      <div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--white); line-height:1.1; letter-spacing:1px; text-transform:uppercase;">SURRY HILLS<br>EDMONDSON PARK<br>MAROOCHYDORE<br>MERMAID BEACH</div>
+    </div>
+  </div>
+  <div class="hero-pills">
+    <div class="pill"><span class="dot"></span>Qualifier <span>Sat 16 May · 8:00am</span></div>
+    <div class="pill"><span class="dot"></span>Finals <span>Sat 23 May · 10:00am</span></div>
+    <div class="pill"><span class="dot"></span>6 Divisions</div>
+    <div class="pill"><span class="dot"></span>3 Workouts</div>
+    <div class="pill"><span class="dot"></span>Pairs Format</div>
+    <div class="pill"><span class="dot"></span>NSW + QLD Finals</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="showTab('plan', this)"><span class="tab-num">01</span>Event Plan</button>
+  <button class="tab-btn" onclick="showTab('runsheet', this)"><span class="tab-num">02</span>Run Sheet</button>
+  <button class="tab-btn" onclick="showTab('scores', this)"><span class="tab-num">03</span>Score Sheets</button>
+  <button class="tab-btn" onclick="showTab('social', this)"><span class="tab-num">04</span>Social & EDM</button>
+</div>
+
+<!-- ======================================================
+     PANEL 1. EVENT PLAN
+     ====================================================== -->
+<div id="panel-plan" class="panel active">
+<div class="panel-inner">
+
+  <div style="background:var(--lime); color:var(--black); padding:20px 24px; border-radius:0; margin-bottom:32px;">
+    <div style="font-family:var(--font-display); font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; opacity:0.7;">STUDIO OWNER QUICK START</div>
+    <div style="font-family:var(--font-display); font-size:20px; font-weight:900; text-transform:uppercase; margin-bottom:12px; line-height:1;">Your 5 Actions This Week</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; font-weight:600;">
+      <div>✅ Post teaser today (Fri 17 Apr)</div>
+      <div>✅ Drop carousel + open sign-ups Sat 18 Apr</div>
+      <div>✅ Launch sign-up landing page Sat 18 Apr <span style="color:rgba(0,0,0,0.5); font-size:12px;">(see landing page tab — coming soon)</span></div>
+      <div>✅ Send launch EDM Mon 21 Apr</div>
+      <div>✅ Brief your coaching team this week</div>
+      <div style="color:rgba(0,0,0,0.5);">Sign-up deadline: Fri 9 May</div>
+    </div>
+  </div>
+  <div class="section-title">Overview & Purpose</div>
+  <p>Studio Games 2026 is S30's flagship internal competition event, designed to foster healthy competition, showcase member progress, and bring the S30 community together across all four studios. This year marks a significant evolution: for the first time it runs as a true <strong>inter-studio competition</strong> with a Qualifier at each location followed by a cross-studio Finals.</p>
+  <p>Programming is aligned with Phase B, meaning members will have been actively preparing for these movements in the lead-up. All three workouts test across S30's core pillars: <strong>Strength, Conditioning,</strong> and <strong>Skill Performance.</strong></p>
+  <div class="callout"><strong>2026 Key Evolution:</strong> Previous years were single-studio events. This year, Qualifier winners from each division advance to a cross-studio Finals. NSW studios compete at Surry Hills, QLD studios compete at Mermaid Beach.</div>
+
+  <hr class="divider">
+  <div class="section-title">Event Structure</div>
+  <div class="grid2">
+    <div class="card">
+      <h4>Part 1: Qualifier</h4>
+      <div style="color:var(--lime); font-family:var(--font-display); font-weight:800; font-size:16px; margin-bottom:10px;">SAT 16 MAY · 8:00AM</div>
+      <p>Each studio runs their own internal Studio Games event. All 4 studios compete simultaneously at their own location. The top pair from each division at each studio qualifies for Finals.</p>
+    </div>
+    <div class="card">
+      <h4>Part 2: Finals · Studio vs Studio</h4>
+      <div style="color:var(--lime); font-family:var(--font-display); font-weight:800; font-size:16px; margin-bottom:10px;">SAT 23 MAY · 10:00AM</div>
+      <p>Division winners come together to compete Studio vs Studio. NSW Finals hosted at <strong>Surry Hills</strong>. QLD Finals hosted at <strong>Mermaid Beach</strong>. Best Friends session runs at host studios before the event.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">Divisions</div>
+  <p>In 2026 we move from Beginner/Open to <strong>Open</strong> and <strong>Pro</strong>: two levels reflecting the growing ability of our membership base. All divisions are pairs (2 athletes).</p>
+  <table>
+    <thead><tr><th>Division</th><th>Level</th><th>Format</th><th>Finals Eligible</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Men's Open</strong></td><td><span class="badge open">Open</span></td><td>Men's Pairs</td><td>✅ Yes</td></tr>
+      <tr><td><strong>Men's Pro</strong></td><td><span class="badge pro">Pro</span></td><td>Men's Pairs</td><td>✅ Yes</td></tr>
+      <tr><td><strong>Women's Open</strong></td><td><span class="badge open">Open</span></td><td>Women's Pairs</td><td>✅ Yes</td></tr>
+      <tr><td><strong>Women's Pro</strong></td><td><span class="badge pro">Pro</span></td><td>Women's Pairs</td><td>✅ Yes</td></tr>
+      <tr><td><strong>Mixed Open</strong></td><td><span class="badge open">Open</span></td><td>1M + 1F Pair</td><td>✅ Yes</td></tr>
+      <tr><td><strong>Mixed Pro</strong></td><td><span class="badge pro">Pro</span></td><td>1M + 1F Pair</td><td>✅ Yes</td></tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>Open:</strong> Accessible for all levels. Perfect entry point for members keen to compete. <strong>Pro:</strong> For experienced, competitive members. Heavier loads, higher standards. Both divisions qualify for Finals.</div>
+
+  <hr class="divider">
+  <div class="section-title">The Workouts</div>
+  <table>
+    <thead><tr><th>#</th><th>Name</th><th>Pillar</th><th>Structure</th><th>Cap</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>WOD 1</strong></td>
+        <td><strong>STRONGER</strong></td>
+        <td>Strength</td>
+        <td>1RM Deadlift + 1RM Push Press. Combined pair score. Two scores: 1A (Deadlift kg) + 1B (Push Press kg).</td>
+        <td>12 min</td>
+      </tr>
+      <tr>
+        <td><strong>WOD 2</strong></td>
+        <td><strong>MAKE ME SWEAT</strong></td>
+        <td>Conditioning</td>
+        <td><strong>Max calories, tag in tag out.</strong> Partners choose one machine: Bike / SkiErg / Row. Free tagging. Open = 6 mins. Pro = 8 mins. Score = total combined calories.</td>
+        <td>8 min</td>
+      </tr>
+      <tr>
+        <td><strong>WOD 3</strong></td>
+        <td><strong>SICKO MODE</strong></td>
+        <td>Skill</td>
+        <td><strong>Part 1:</strong> 30 reps Hang Clean &amp; Jerk, tag in tag out, shared bar (M's Open 30kg / M's Pro 40kg / W's Open 25kg / W's Pro 30kg / Mx Open 27.5kg / Mx Pro 35kg). <strong>Part 2:</strong> MAX synchro kicksits in remaining time. Score = total kicksits. Score = 0 if cap hit before 30 reps.</td>
+        <td>8 min</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout"><strong>✅ All workouts confirmed.</strong> Descriptions, weights and scoring are locked. See the Score Sheets tab for printable scorecards and full judging notes.</div>
+
+  <hr class="divider">
+  <div class="section-title">Scoring Explained</div>
+  <p>Each division is ranked separately within each scored event. Points are awarded by finishing position. The pair with the <strong>highest total points</strong> across all four scores wins the division.</p>
+
+  <table style="margin:16px 0;">
+    <thead>
+      <tr>
+        <th>Score</th>
+        <th>Workout</th>
+        <th>What is measured</th>
+        <th style="text-align:center;">Max Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1A</strong></td>
+        <td>WOD 1 — STRONGER</td>
+        <td>Combined Push Press kg (both athletes' best lift added together) — ranked highest to lowest</td>
+        <td style="text-align:center; font-family:var(--font-display); font-size:18px; color:var(--lime);">10</td>
+      </tr>
+      <tr>
+        <td><strong>1B</strong></td>
+        <td>WOD 1 — STRONGER</td>
+        <td>Combined Deadlift kg (both athletes' best lift added together) — ranked highest to lowest</td>
+        <td style="text-align:center; font-family:var(--font-display); font-size:18px; color:var(--lime);">10</td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td>WOD 2 — MAKE ME SWEAT</td>
+        <td>Total combined calories at time cap — ranked highest to lowest</td>
+        <td style="text-align:center; font-family:var(--font-display); font-size:18px; color:var(--lime);">10</td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td>WOD 3 — SICKO MODE</td>
+        <td>Total synchro kicksits in remaining time — ranked highest to lowest. Score = 0 if cap hit before 30 Hang Clean & Jerks.</td>
+        <td style="text-align:center; font-family:var(--font-display); font-size:18px; color:var(--lime);">10</td>
+      </tr>
+      <tr style="background:rgba(168,200,50,0.08);">
+        <td colspan="3" style="font-family:var(--font-display); font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--white);">Maximum Total Points</td>
+        <td style="text-align:center; font-family:var(--font-display); font-size:24px; font-weight:900; color:var(--yellow);">40</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout"><strong>⚠️ Important:</strong> WOD 1 produces <strong>two separate scores</strong> (1A and 1B) — both are ranked and pointed independently. This means Strength accounts for 50% of the total score (20 of 40 possible points). This is intentional.</div>
+
+  <div style="background:var(--dark2); border:1px solid #2a2a2a; padding:20px 24px; margin:16px 0;">
+    <div style="font-family:var(--font-display); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); margin-bottom:12px;">Points Per Finishing Position</div>
+    <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:10px; text-align:center;">
+      <div><div style="font-size:20px; margin-bottom:4px;">🥇</div><div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--lime);">10</div><div style="font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:1px;">1st</div></div>
+      <div><div style="font-size:20px; margin-bottom:4px;">🥈</div><div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--white);">8</div><div style="font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:1px;">2nd</div></div>
+      <div><div style="font-size:20px; margin-bottom:4px;">🥉</div><div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--white);">6</div><div style="font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:1px;">3rd</div></div>
+      <div><div style="font-size:20px; margin-bottom:4px;"> </div><div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--white);">4</div><div style="font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:1px;">4th</div></div>
+      <div><div style="font-size:20px; margin-bottom:4px;"> </div><div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--white);">2</div><div style="font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:1px;">5th</div></div>
+      <div><div style="font-size:20px; margin-bottom:4px;"> </div><div style="font-family:var(--font-display); font-size:22px; font-weight:900; color:var(--white);">1</div><div style="font-size:10px; color:var(--grey); text-transform:uppercase; letter-spacing:1px;">6th+</div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--dark2); border-left:4px solid var(--yellow); padding:14px 18px; margin:16px 0;">
+    <div style="font-family:var(--font-display); font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--yellow); margin-bottom:6px;">Worked Example</div>
+    <p style="font-size:13px; margin-bottom:8px;">A pair finishes: <strong>1st in 1A</strong> (10pts) · <strong>3rd in 1B</strong> (6pts) · <strong>2nd in WOD 2</strong> (8pts) · <strong>1st in WOD 3</strong> (10pts)</p>
+    <p style="font-family:var(--font-display); font-size:20px; font-weight:900; color:var(--lime); margin:0;">Total = 34 points</p>
+  </div>
+
+  <div class="callout yellow"><strong>Tiebreaker:</strong> If two pairs finish on equal total points, the winner is decided by their <strong>WOD 3 kicksit score</strong> (highest kicksit count wins).</div>
+
+  <hr class="divider">
+  <div class="section-title">Qualification & Finals Format</div>
+
+  <div class="sub-title">NSW Finals: Surry Hills</div>
+  <ul>
+    <li>Each division at Surry Hills + Edmondson Park produces 1 winning pair.</li>
+    <li>Up to 6 pairs per studio × 2 studios = up to 12 pairs at NSW Finals.</li>
+    <li>Same 3 workouts used at Finals. no new movements introduced.</li>
+    <li>Trophies/medals awarded to division winners.</li>
+  </ul>
+
+  <div class="sub-title">QLD Finals: Mermaid Beach</div>
+  <ul>
+    <li>Both QLD studios run Qualifier on Sat 16 May at their own locations.</li>
+    <li>QLD Finals hosted at <strong>Mermaid Beach</strong> on Sat 23 May.</li>
+    <li>Due to 2–3 hour travel distance, Maroochydore athletes attending Finals are <strong>not required to be division winners</strong>: any willing athletes can make the trip to represent their studio.</li>
+  </ul>
+
+  <hr class="divider">
+  <div class="section-title">Roles & Responsibilities</div>
+  <div class="grid2">
+    <div class="card">
+      <h4>S30 Studio / Matt</h4>
+      <ul>
+        <li>Produce workout descriptions & judging criteria</li>
+        <li>Create and distribute score sheets & leaderboard templates</li>
+        <li>Produce run sheets & suggested timelines</li>
+        <li>Create and distribute all social assets & EDM creative</li>
+        <li>Coordinate cross-studio Finals logistics</li>
+        <li>Communicate workout reveal schedule to all studios</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Each Studio (All 4)</h4>
+      <ul>
+        <li>Promote Studio Games and drive sign-ups</li>
+        <li>Facilitate team formation and sign-up process</li>
+        <li>Host and manage Qualifier day (Sat 16 May)</li>
+        <li>Ensure sufficient on-day judges and staff</li>
+        <li>Submit Qualifier results to Matt by end of day 16 May</li>
+        <li>Coordinate Finals attendance for qualifying pairs</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">Key Dates & Deadlines</div>
+  <table>
+    <thead><tr><th>Date</th><th>Milestone</th><th>Owner</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Fri 17 Apr</strong></td><td>Teaser post goes live. "The floor is yours. Are you ready?"</td><td>All Studios</td></tr>
+      <tr class="highlight-row"><td><strong>Sat 18 Apr</strong></td><td>Studio Games officially announced. Full carousel drops. Sign-ups open. Social assets go live. Landing page + sign-up form goes live.</td><td>All Studios</td></tr>
+      <tr><td><strong>W/C 28 Apr</strong></td><td>Mid-campaign push: countdown content, member spotlights, member spotlights</td><td>All Studios</td></tr>
+      <tr><td><strong>Fri 9 May</strong></td><td>Sign-up deadline. Studios finalise heat order.</td><td>All Studios</td></tr>
+      <tr class="highlight-row"><td><strong>Sat 16 May</strong></td><td>QUALIFIER DAY: All 4 studios · 8:00am · ~4 hours</td><td>All Studios</td></tr>
+      <tr><td><strong>Sun 17 May</strong></td><td>Qualifier results submitted to Matt. Leaderboards posted on socials.</td><td>All Studios → Matt</td></tr>
+      <tr><td><strong>W/C 19 May</strong></td><td>Finals hype content. Announce qualifying pairs.</td><td>All Studios</td></tr>
+      <tr class="highlight-row"><td><strong>Sat 23 May</strong></td><td>STUDIO GAMES FINALS: NSW @ Surry Hills / QLD @ Mermaid Beach · 10:00am (Best Friends session before)</td><td>Matt (Surry Hills) + Mermaid Beach</td></tr>
+      <tr><td><strong>Sun 24 May</strong></td><td>Finals results, winner content, celebration posts.</td><td>All Studios</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+  <div class="section-title">Staffing & Floor Setup</div>
+  <div class="grid4">
+    <div class="card light"><h4>🎤 Head Judge</h4><p>Briefs workouts, oversees day, settles disputes, announces results. Keeps energy up.</p></div>
+    <div class="card light"><h4>⚖️ Floor Judges</h4><p>1 per 2 pairs on floor. Count reps, enforce standards, record scores.</p></div>
+    <div class="card light"><h4>📋 Score Recorder</h4><p>Collects all scorecards, updates master leaderboard, flags disputes.</p></div>
+    <div class="card light"><h4>🔧 Setup Staff</h4><p>2–3 staff: equipment transitions, athlete coordination, warm-up facilitation.</p></div>
+  </div>
+  <ul style="margin-top:16px;">
+    <li>Max 4 pairs on floor at one time. Never mix Open + Pro in the same heat.</li>
+    <li>Zones: Competition Floor / Warm-Up Area / Spectator Area.</li>
+    <li>Setup complete by 7:30am. Staff briefing 7:30am. Doors open 7:45am.</li>
+    <li>Post heat order and schedule visibly on whiteboard or TV slide.</li>
+    <li><strong>Finals day:</strong> Best Friends session ~8:00–9:30am. Floor competition-ready by 9:30am. Athlete doors open 9:45am.</li>
+  </ul>
+
+</div>
+</div>
+
+<!-- ======================================================
+     PANEL 2. RUN SHEET
+     ====================================================== -->
+<div id="panel-runsheet" class="panel">
+<div class="panel-inner">
+
+  <div class="callout"><strong>How to use:</strong> This is a guide. Adjust times based on your team numbers and studio size. Structure below assumes 10–16 teams per studio across all divisions. Never run Open and Pro in the same heat.</div>
+  <div class="callout yellow"><strong>📅 Today is Friday 17 April.</strong> Qualifier Day is Sat 16 May — 29 days away. Finals Day is Sat 23 May. Sign-ups close Fri 9 May.</div>
+
+  <div class="section-title">Pre-Event Setup</div>
+  <table>
+    <thead><tr><th>Time</th><th>Activity</th><th>Who</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td class="time-cell">Eve of 15 May</td><td><strong>Stream Deck Prep</strong></td><td>Head Coach</td><td>Load WODs 1/2/3 into A/B/C blocks. Test all timers. Prepare 3 browser tabs per TV.</td></tr>
+      <tr><td class="time-cell">7:00am</td><td><strong>Staff Arrive + Full Setup</strong></td><td>All Staff</td><td>Set up Competition / Warm-Up / Spectator zones. Set up barbells, bikes, ski ergs, rowers. Post heat order on whiteboard/TV.</td></tr>
+      <tr><td class="time-cell">7:30am</td><td><strong>Staff Briefing</strong></td><td>Head Judge</td><td>Walk all staff through all 3 workouts. Confirm judging standards. Assign judge pairs. Brief score recorder.</td></tr>
+      <tr class="highlight-row"><td class="time-cell">7:45am</td><td><strong>Doors Open. Athletes Arrive</strong></td><td>All Staff</td><td>Welcome athletes. Direct to warm-up zone. Check off teams on sign-up sheet.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Qualifier Day. Sat 16 May</div>
+  <table>
+    <thead><tr><th style="width:110px">Time</th><th style="width:90px">Block</th><th>Activity</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="section-row"><td colspan="4">OPENING</td></tr>
+      <tr class="highlight-row">
+        <td class="time-cell">8:00am</td>
+        <td><span class="wod-tag admin">Admin</span></td>
+        <td><strong>Welcome & Opening Address</strong></td>
+        <td>Welcome athletes + spectators. Acknowledge all 4 studios competing today. Run through day structure.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">8:05am</td>
+        <td><span class="wod-tag admin">Warm Up</span></td>
+        <td><strong>Group Warm-Up (all athletes)</strong></td>
+        <td>15-min group warm-up led by staff. General movement prep + specific prep for WOD 1 (hip hinge, press).</td>
+      </tr>
+      <tr>
+        <td class="time-cell">8:20am</td>
+        <td><span class="wod-tag admin">Brief</span></td>
+        <td><strong>WOD 1 Brief. "STRONGER"</strong></td>
+        <td>Head Judge briefs Deadlift + Push Press standards. Demo with staff. Q&A. Explain 1A and 1B scoring.</td>
+      </tr>
+      <tr class="section-row"><td colspan="4">WORKOUT 1: STRONGER: Strength · 1RM Deadlift + Push Press · 12 min cap</td></tr>
+      <tr>
+        <td class="time-cell">8:30am</td>
+        <td><span class="wod-tag w1">WOD 1</span></td>
+        <td><strong>WOD 1 Heats. Open Divisions</strong></td>
+        <td>Men's Open → Women's Open → Mixed Open. Max 4 pairs per heat. 13 min (6 PP + 1 transition + 6 DL) + 3 min between heats. Record 1A and 1B scores separately.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">~9:15am</td>
+        <td><span class="wod-tag w1">WOD 1</span></td>
+        <td><strong>WOD 1 Heats. Pro Divisions</strong></td>
+        <td>Men's Pro → Women's Pro → Mixed Pro. Same structure, Pro weights apply.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">~10:00am</td>
+        <td><span class="wod-tag brk">Break</span></td>
+        <td><strong>Transition Break (15 min)</strong></td>
+        <td>Finalise WOD 1 leaderboard. Reconfigure floor for WOD 2 (bikes, ski ergs, rowers).</td>
+      </tr>
+      <tr class="section-row"><td colspan="4">WORKOUT 2: MAKE ME SWEAT: Max Cals · Tag In Tag Out · Open 6 min / Pro 8 min</td></tr>
+      <tr>
+        <td class="time-cell">10:00am</td>
+        <td><span class="wod-tag admin">Brief</span></td>
+        <td><strong>WOD 2 Brief. "MAKE ME SWEAT"</strong></td>
+        <td>Brief machine choice (Bike/SkiErg/Row — pick one together). Explain tag in tag out, free tagging. Open = 6 mins, Pro = 8 mins. Score = total cals. Demo. Q&A.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">10:10am</td>
+        <td><span class="wod-tag w2">WOD 2</span></td>
+        <td><strong>WOD 2 Heats. Open Divisions</strong></td>
+        <td>Men's Open → Women's Open → Mixed Open. 6 min cap + 3 min transition. Record total cals on scorecard.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">~10:50am</td>
+        <td><span class="wod-tag w2">WOD 2</span></td>
+        <td><strong>WOD 2 Heats. Pro Divisions</strong></td>
+        <td>Men's Pro → Women's Pro → Mixed Pro. 8 min cap. Record total cals.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">~11:30am</td>
+        <td><span class="wod-tag brk">Break</span></td>
+        <td><strong>Transition Break (15 min)</strong></td>
+        <td>WOD 2 leaderboard updated. Reconfigure floor for WOD 3 (barbells + rig).</td>
+      </tr>
+      <tr class="section-row"><td colspan="4">WORKOUT 3: SICKO MODE: 30 Hang Clean &amp; Jerk + Max Synchro Kicksits · 8 min cap</td></tr>
+      <tr>
+        <td class="time-cell">11:30am</td>
+        <td><span class="wod-tag admin">Brief</span></td>
+        <td><strong>WOD 3 Brief. "SICKO MODE"</strong></td>
+        <td>Brief the two-part structure. Part 1: 30 reps Hang Clean &amp; Jerk tag in tag out (confirm bar weights per division). Part 2: synchro kicksits in remaining time. Demo both movements. Q&A.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">11:40am</td>
+        <td><span class="wod-tag w3">WOD 3</span></td>
+        <td><strong>WOD 3 Heats. Open Divisions</strong></td>
+        <td>Men's Open → Women's Open → Mixed Open. 8 min cap + 3 min transition. Judge tracks 30 rep counter then kicksit total.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">~12:25pm</td>
+        <td><span class="wod-tag w3">WOD 3</span></td>
+        <td><strong>WOD 3 Heats. Pro Divisions</strong></td>
+        <td>Men's Pro → Women's Pro → Mixed Pro. 8 min cap. Higher bar weights per division.</td>
+      </tr>
+      <tr class="section-row"><td colspan="4">CLOSING</td></tr>
+      <tr>
+        <td class="time-cell">~1:00pm</td>
+        <td><span class="wod-tag admin">Admin</span></td>
+        <td><strong>Score Collation</strong></td>
+        <td>Score recorder compiles all 3 results into master leaderboard. Confirm division winners. ~15 mins.</td>
+      </tr>
+      <tr class="highlight-row">
+        <td class="time-cell">~1:15pm</td>
+        <td><span class="wod-tag admin">Finish</span></td>
+        <td><strong>Results + Closing Address</strong></td>
+        <td>Announce division winners. Confirm Finals qualifiers (Sat 23 May, 10am). Thank all athletes. Group photo.</td>
+      </tr>
+      <tr>
+        <td class="time-cell">Post-event</td>
+        <td><span class="wod-tag admin">Admin</span></td>
+        <td><strong>Results Submitted to Matt</strong></td>
+        <td>Submit final leaderboard to Matt by end of day. Share results on studio socials.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">Finals Day. Sat 23 May (10:00am)</div>
+  <ul>
+    <li><strong>10:00am start</strong>. Best Friends session runs at the host studio ~8:00–9:30am beforehand. Floor competition-ready by 9:30am. Athlete doors open 9:45am.</li>
+    <li>NSW: Hosted at <strong>Surry Hills</strong>. Athletes from Edmondson Park travel to Surry Hills.</li>
+    <li>QLD: Hosted at <strong>Mermaid Beach</strong>. Maroochydore athletes travel down (open entry, not strictly division winners).</li>
+    <li>Same 3 workouts. same structure. no new movements. Athletes already know the standards.</li>
+    <li>Allow extra time in opening address to acknowledge both studios competing and the journey from Qualifier to Finals.</li>
+    <li>Bigger closing ceremony. trophy/medal presentation. Consider music, spectator seating, post-event celebrations.</li>
+  </ul>
+
+  <div class="section-title">Heat Order Guide</div>
+  <div class="callout">Run all heats of one division before moving to the next. Max 4 pairs per heat at all times. Never mix Open + Pro. Use whiteboard to display current heat live.</div>
+  <div class="grid2">
+    <div class="card">
+      <h4>Suggested Division Order</h4>
+      <p>Men's Open → Women's Open → Mixed Open → Men's Pro → Women's Pro → Mixed Pro</p>
+      <p style="margin-top:8px;">This order is consistent across all 3 workouts. Athletes know when they're up and can manage their warm-up and rest accordingly.</p>
+    </div>
+    <div class="card">
+      <h4>Heat Logistics</h4>
+      <ul>
+        <li>Add heats for any division with 5+ pairs (Heat A + Heat B)</li>
+        <li>3 min minimum transition between heats</li>
+        <li>15 min transition between entire workouts</li>
+        <li>Communicate any delays clearly to athletes</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ======================================================
+     PANEL 3. SCORE SHEETS
+     ====================================================== -->
+<div id="panel-scores" class="panel">
+<div class="panel-inner">
+
+  <div class="callout yellow" style="margin-bottom:20px;">
+    <strong>📋 Print Guide:</strong> Print one scorecard per pair per workout. If you have 10 pairs competing, print 10 × WOD 1, 10 × WOD 2, 10 × WOD 3 = 30 scorecards total. Print the Master Leaderboard once per division (6 total). Recommend A4, colour preferred so the section headers are visible.
+  </div>
+
+  <div class="section-title">Scoring System</div>
+  <p>Each division is ranked within each workout. Points awarded by finishing position. Highest total points across all workouts wins the division.</p>
+  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:10px; margin:16px 0 24px;">
+    <div style="background:#fff; border:2px solid #111; padding:14px; text-align:center; color:#111;"><div style="font-size:22px; margin-bottom:4px;">🥇</div><div style="font-family:var(--font-display); font-size:28px; font-weight:900; color:#111;">10</div><div style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:1px;">1st</div></div>
+    <div style="background:#fff; border:2px solid #111; padding:14px; text-align:center; color:#111;"><div style="font-size:22px; margin-bottom:4px;">🥈</div><div style="font-family:var(--font-display); font-size:28px; font-weight:900; color:#111;">8</div><div style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:1px;">2nd</div></div>
+    <div style="background:#fff; border:2px solid #111; padding:14px; text-align:center; color:#111;"><div style="font-size:22px; margin-bottom:4px;">🥉</div><div style="font-family:var(--font-display); font-size:28px; font-weight:900; color:#111;">6</div><div style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:1px;">3rd</div></div>
+    <div style="background:#fff; border:2px solid #111; padding:14px; text-align:center; color:#111;"><div style="font-size:22px; margin-bottom:4px;"> </div><div style="font-family:var(--font-display); font-size:28px; font-weight:900; color:#111;">4</div><div style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:1px;">4th</div></div>
+    <div style="background:#fff; border:2px solid #111; padding:14px; text-align:center; color:#111;"><div style="font-size:22px; margin-bottom:4px;"> </div><div style="font-family:var(--font-display); font-size:28px; font-weight:900; color:#111;">2</div><div style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:1px;">5th</div></div>
+    <div style="background:#fff; border:2px solid #111; padding:14px; text-align:center; color:#111;"><div style="font-size:22px; margin-bottom:4px;"> </div><div style="font-family:var(--font-display); font-size:28px; font-weight:900; color:#111;">1</div><div style="font-size:10px; color:#666; text-transform:uppercase; letter-spacing:1px;">6th+</div></div>
+  </div>
+  <div class="callout"><strong>WOD 1 = two scores (1A + 1B).</strong> Each ranked and scored independently. Maximum 20 points from WOD 1 (10+10). Tiebreaker = WOD 3 score.</div>
+
+  <hr class="divider">
+
+  <!-- ===== WOD 1 SCORECARD ===== -->
+  <div class="section-title">Scorecard — WOD 1: STRONGER</div>
+  <p style="margin-bottom:16px; font-size:13px; color:#aaa;">Print one per pair. Shared bar, athletes alternate. 6 mins Push Press → 1 min transition → 6 mins Deadlift. Judge records best lift for each athlete.</p>
+
+  <div style="border:2px solid #111; margin:20px 0;">
+    <div style="background:#A8C832; padding:14px 20px; display:flex; justify-content:space-between; align-items:center;">
+      <div><div style="font-family:var(--font-display); font-size:10px; letter-spacing:2px; color:rgba(0,0,0,0.6); text-transform:uppercase; margin-bottom:2px;">Workout 1 · Strength</div><div style="font-family:var(--font-display); font-size:26px; font-weight:900; color:#000; text-transform:uppercase; line-height:1;">STRONGER</div></div>
+      <div style="text-align:right; font-size:11px; font-weight:700; color:rgba(0,0,0,0.7); text-transform:uppercase; letter-spacing:1px; line-height:1.6;">6 mins: 1RM Push Press<br>1 min: Transition<br>6 mins: 1RM Deadlift<br>Shared bar · Alternate lifts</div>
+    </div>
+    <div style="background:#fff; padding:20px; color:#111;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Studio</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Division</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Level</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Heat #</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 1 Name</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 2 Name</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+      <div style="background:#f5f9e8; border:1px solid #A8C832; padding:14px; margin-bottom:12px;">
+        <div style="font-family:var(--font-display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#2e7d32; margin-bottom:10px;">SCORE 1A — 1RM PUSH PRESS (First 6 mins)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 1 Best (kg)</div><div style="border:2px solid #111; height:40px; background:#fff;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 2 Best (kg)</div><div style="border:2px solid #111; height:40px; background:#fff;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#2e7d32; margin-bottom:4px; font-family:var(--font-display);">⭐ 1A TOTAL</div><div style="border:2px solid #A8C832; height:40px; background:#fff;"></div></div>
+        </div>
+      </div>
+      <div style="background:#f5f9e8; border:1px solid #A8C832; padding:14px; margin-bottom:12px;">
+        <div style="font-family:var(--font-display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#2e7d32; margin-bottom:10px;">SCORE 1B — 1RM DEADLIFT (Second 6 mins)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 1 Best (kg)</div><div style="border:2px solid #111; height:40px; background:#fff;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 2 Best (kg)</div><div style="border:2px solid #111; height:40px; background:#fff;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#2e7d32; margin-bottom:4px; font-family:var(--font-display);">⭐ 1B TOTAL</div><div style="border:2px solid #A8C832; height:40px; background:#fff;"></div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:6px; font-family:var(--font-display);">Notes / Disputes</div><div style="border-bottom:1px solid #ccc; height:24px; margin-bottom:6px;"></div><div style="border-bottom:1px solid #ccc; height:24px;"></div></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; padding-top:12px; border-top:1px solid #eee;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Judge Name (print)</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Judge Signature</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ===== WOD 2 SCORECARD ===== -->
+  <div class="section-title">Scorecard — WOD 2: MAKE ME SWEAT</div>
+  <p style="margin-bottom:16px; font-size:13px; color:#aaa;">Print one per pair. Circle Open or Pro. Record total cals at time cap. Simple.</p>
+
+  <div style="border:2px solid #111; margin:20px 0;">
+    <div style="background:#A8C832; padding:14px 20px; display:flex; justify-content:space-between; align-items:center;">
+      <div><div style="font-family:var(--font-display); font-size:10px; letter-spacing:2px; color:rgba(0,0,0,0.6); text-transform:uppercase; margin-bottom:2px;">Workout 2 · Conditioning</div><div style="font-family:var(--font-display); font-size:26px; font-weight:900; color:#000; text-transform:uppercase; line-height:1;">MAKE ME SWEAT</div></div>
+      <div style="text-align:right; font-size:11px; font-weight:700; color:rgba(0,0,0,0.7); text-transform:uppercase; letter-spacing:1px; line-height:1.6;">Max Calories · Tag In Tag Out<br>Bike / SkiErg / Row (choose one)<br>Open: 6 mins · Pro: 8 mins<br>Score = Total Combined Cals</div>
+    </div>
+    <div style="background:#fff; padding:20px; color:#111;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Studio</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Division</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 1 Name</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 2 Name</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Machine Used</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:8px; font-family:var(--font-display);">Division (circle)</div><div style="font-family:var(--font-display); font-size:18px; font-weight:900; letter-spacing:8px; color:#111;">OPEN &nbsp; PRO</div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Heat #</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+      <div style="background:#f5f9e8; border:1px solid #A8C832; padding:14px; margin-bottom:12px;">
+        <div style="font-family:var(--font-display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#2e7d32; margin-bottom:10px;">SCORE — TOTAL CALORIES AT TIME CAP</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px;">
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Time Cap (circle)</div><div style="font-family:var(--font-display); font-size:18px; font-weight:900; letter-spacing:6px; color:#111; padding-top:6px;">6 &nbsp; 8</div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Cal Counter Reading</div><div style="border:2px solid #111; height:40px; background:#fff;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#2e7d32; margin-bottom:4px; font-family:var(--font-display);">⭐ TOTAL CALS (SCORE)</div><div style="border:2px solid #A8C832; height:40px; background:#fff;"></div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:6px; font-family:var(--font-display);">Notes / Disputes</div><div style="border-bottom:1px solid #ccc; height:24px; margin-bottom:6px;"></div><div style="border-bottom:1px solid #ccc; height:24px;"></div></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; padding-top:12px; border-top:1px solid #eee;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Judge Name (print)</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Judge Signature</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ===== WOD 3 SCORECARD ===== -->
+  <div class="section-title">Scorecard — WOD 3: SICKO MODE</div>
+  <p style="margin-bottom:16px; font-size:13px; color:#aaa;">Print one per pair. Judge tracks 30 rep Hang Clean & Jerk completion then counts synchro kicksits in remaining time.</p>
+
+  <div style="border:2px solid #111; margin:20px 0;">
+    <div style="background:#A8C832; padding:14px 20px; display:flex; justify-content:space-between; align-items:center;">
+      <div><div style="font-family:var(--font-display); font-size:10px; letter-spacing:2px; color:rgba(0,0,0,0.6); text-transform:uppercase; margin-bottom:2px;">Workout 3 · Skill</div><div style="font-family:var(--font-display); font-size:26px; font-weight:900; color:#000; text-transform:uppercase; line-height:1;">SICKO MODE</div></div>
+      <div style="text-align:right; font-size:11px; font-weight:700; color:rgba(0,0,0,0.7); text-transform:uppercase; letter-spacing:1px; line-height:1.6;">8 min cap · Tag in tag out<br>Part 1: 30 reps Hang Clean & Jerk<br>Part 2: Max synchro kicksits<br>Score = kicksits (0 if cap before 30 reps)</div>
+    </div>
+    <div style="background:#fff; padding:20px; color:#111;">
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Studio</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Division</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 1 Name</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Athlete 2 Name</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:8px; font-family:var(--font-display);">Level (circle)</div><div style="font-family:var(--font-display); font-size:18px; font-weight:900; letter-spacing:8px; color:#111;">OPEN &nbsp; PRO</div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Bar Weight (kg)</div><div style="font-size:11px; color:#666; margin-top:4px;">M's Open 30 · M's Pro 40 · W's Open 25 · W's Pro 30 · Mx Open 27.5 · Mx Pro 35</div></div>
+      </div>
+      <!-- Part 1 -->
+      <div style="background:#fff3e0; border:1px solid #f0b429; padding:14px; margin-bottom:12px;">
+        <div style="font-family:var(--font-display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#e65100; margin-bottom:10px;">PART 1 — 30 REPS HANG CLEAN & JERK (tag in tag out)</div>
+        <div style="display:grid; grid-template-columns:repeat(10,1fr); gap:6px; margin-bottom:8px;">
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">1</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">2</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">3</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">4</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">5</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">6</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">7</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">8</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">9</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">10</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(10,1fr); gap:6px; margin-bottom:8px;">
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">11</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">12</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">13</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">14</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">15</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">16</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">17</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">18</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">19</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">20</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(10,1fr); gap:6px;">
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">21</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">22</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">23</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">24</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">25</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">26</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">27</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">28</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center;"><div style="font-size:8px; color:#666; font-family:var(--font-display);">29</div><div style="border:1px solid #ccc; height:24px; background:#fff;"></div></div>
+          <div style="text-align:center; border:2px solid #A8C832;"><div style="font-size:8px; color:#2e7d32; font-family:var(--font-display); font-weight:700;">30 ✅</div><div style="border:1px solid #A8C832; height:24px; background:#f5f9e8;"></div></div>
+        </div>
+        <div style="margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Time 30th rep completed</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#e65100; margin-bottom:4px; font-family:var(--font-display);">Cap reached before 30 reps? (circle)</div><div style="font-family:var(--font-display); font-size:18px; font-weight:900; letter-spacing:6px; color:#111; padding-top:2px;">YES &nbsp; NO</div></div>
+        </div>
+      </div>
+      <!-- Part 2 -->
+      <div style="background:#f5f9e8; border:1px solid #A8C832; padding:14px; margin-bottom:12px;">
+        <div style="font-family:var(--font-display); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#2e7d32; margin-bottom:10px;">PART 2 — SYNCHRO KICKSITS (remaining time)</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Time remaining when Part 2 started</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+          <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#2e7d32; margin-bottom:4px; font-family:var(--font-display);">⭐ TOTAL KICKSITS (SCORE)</div><div style="border:2px solid #A8C832; height:40px; background:#fff;"></div></div>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:6px; font-family:var(--font-display);">Notes / No Reps / Disputes</div><div style="border-bottom:1px solid #ccc; height:24px; margin-bottom:6px;"></div><div style="border-bottom:1px solid #ccc; height:24px;"></div></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; padding-top:12px; border-top:1px solid #eee;">
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Judge Name (print)</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+        <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#666; margin-bottom:4px; font-family:var(--font-display);">Judge Signature</div><div style="border-bottom:2px solid #111; height:28px;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">Master Leaderboard</div>
+  <div class="callout">Complete one leaderboard per division: <strong>Men's Open · Men's Pro · Women's Open · Women's Pro · Mixed Open · Mixed Pro</strong></div>
+
+  <table class="lb-table" style="margin-top:16px;">
+    <thead>
+      <tr>
+        <th>Rank</th><th>Athlete 1</th><th>Athlete 2</th>
+        <th>1A Score<br><span style="font-weight:400;font-size:9px;">PP kg</span></th><th>1A Pts</th>
+        <th>1B Score<br><span style="font-weight:400;font-size:9px;">DL kg</span></th><th>1B Pts</th>
+        <th>WOD 2<br><span style="font-weight:400;font-size:9px;">cals</span></th><th>W2 Pts</th>
+        <th>WOD 3<br><span style="font-weight:400;font-size:9px;">kicksits</span></th><th>W3 Pts</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="rank-gold"><td class="lb-rank">🥇</td><td></td><td></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-total"></td></tr>
+      <tr class="rank-silver"><td class="lb-rank">🥈</td><td></td><td></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-total"></td></tr>
+      <tr class="rank-bronze"><td class="lb-rank">🥉</td><td></td><td></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-score"></td><td class="lb-total"></td></tr>
+      <tr><td class="lb-rank">4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="lb-total"></td></tr>
+      <tr><td class="lb-rank">5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="lb-total"></td></tr>
+      <tr><td class="lb-rank">6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="lb-total"></td></tr>
+      <tr><td class="lb-rank">7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="lb-total"></td></tr>
+      <tr><td class="lb-rank">8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="lb-total"></td></tr>
+    </tbody>
+  </table>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
+    <div>
+      <div style="margin-bottom:12px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; font-family:var(--font-display); display:block; margin-bottom:6px;">Division</div><div style="border-bottom:1px solid #333; height:28px;"></div></div>
+      <div style="margin-bottom:12px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; font-family:var(--font-display); display:block; margin-bottom:6px;">Studio</div><div style="border-bottom:1px solid #333; height:28px;"></div></div>
+      <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; font-family:var(--font-display); display:block; margin-bottom:6px;">Date</div><div style="border-bottom:1px solid #333; height:28px;"></div></div>
+    </div>
+    <div class="card" style="border-color:var(--lime);">
+      <h4 style="font-size:11px; margin-bottom:12px;">Division Winner → Qualifies for Finals</h4>
+      <div style="margin-bottom:10px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; font-family:var(--font-display); display:block; margin-bottom:6px;">Athlete 1</div><div style="border-bottom:1px solid var(--lime); height:28px;"></div></div>
+      <div style="margin-bottom:10px;"><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; font-family:var(--font-display); display:block; margin-bottom:6px;">Athlete 2</div><div style="border-bottom:1px solid var(--lime); height:28px;"></div></div>
+      <div><div style="font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#888; font-family:var(--font-display); display:block; margin-bottom:6px;">Total Points</div><div style="border-bottom:1px solid var(--lime); height:28px;"></div></div>
+    </div>
+  </div>
+
+</div>
+</div></div>
+</div>
+
+<!-- ======================================================
+     PANEL 4. SOCIAL & EDM
+     ====================================================== -->
+<div id="panel-social" class="panel">
+<div class="panel-inner">
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:32px;">
+    <a href="#" style="text-decoration:none;">
+      <div style="background:var(--yellow); color:var(--black); padding:20px 24px; display:flex; align-items:center; gap:16px;">
+        <div style="font-size:32px;">📁</div>
+        <div>
+          <div style="font-family:var(--font-display); font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:0.6; margin-bottom:4px;">All Studio Assets</div>
+          <div style="font-family:var(--font-display); font-size:18px; font-weight:900; text-transform:uppercase; line-height:1;">Google Drive Folder →</div>
+          <div style="font-size:12px; margin-top:4px; opacity:0.7;">All completed assets. Download, customise, post.</div>
+        </div>
+      </div>
+    </a>
+    <a href="#" style="text-decoration:none;">
+      <div style="background:var(--lime); color:var(--black); padding:20px 24px; display:flex; align-items:center; gap:16px;">
+        <div style="font-size:32px;">🎨</div>
+        <div>
+          <div style="font-family:var(--font-display); font-size:11px; letter-spacing:2px; text-transform:uppercase; opacity:0.6; margin-bottom:4px;">Design Templates</div>
+          <div style="font-family:var(--font-display); font-size:18px; font-weight:900; text-transform:uppercase; line-height:1;">Canva Templates →</div>
+          <div style="font-size:12px; margin-top:4px; opacity:0.7;">Customise for your studio. Swap photos, update text.</div>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="section-title">Asset Checklist</div>
+  <table class="asset-table">
+    <thead><tr><th>#</th><th>Asset</th><th>Format</th><th>When</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Announcement Graphic</strong></td><td>1:1 Feed + 9:16 Story</td><td>Launch week</td><td>☐ To create</td></tr>
+      <tr><td>2</td><td><strong>"Sign Up Now" Graphic</strong></td><td>1:1 Feed + 9:16 Story</td><td>Sign-up push</td><td>☐ To create</td></tr>
+      <tr><td>3</td><td><strong>Divisions Carousel (Open vs Pro)</strong></td><td>Carousel 3–4 slides</td><td>Launch week</td><td>☐ To create</td></tr>
+      <tr><td>4</td><td><strong>Countdown. 2 Weeks</strong></td><td>1:1 Feed</td><td>W/C 5 May</td><td>☐ To create</td></tr>
+      <tr><td>5</td><td><strong>Countdown. 1 Week</strong></td><td>1:1 Feed</td><td>W/C 12 May</td><td>☐ To create</td></tr>
+      <tr><td>6</td><td><strong>Hype Reel #1</strong></td><td>9:16 Reel</td><td>W/C 5 May</td><td>☐ To create</td></tr>
+      <tr><td>7</td><td><strong>Workout Reveals (WOD 1/2/3)</strong></td><td>Carousel or 3× single</td><td>W/C 12 May</td><td>☐ To create</td></tr>
+      <tr><td>8</td><td><strong>Qualifier Day Coverage</strong></td><td>Stories + feed post</td><td>16 May</td><td>☐ Day-of</td></tr>
+      <tr><td>9</td><td><strong>Qualifier Results / Leaderboard</strong></td><td>1:1 Feed + Story</td><td>16–17 May</td><td>☐ Day-of</td></tr>
+      <tr><td>10</td><td><strong>Finals Hype (who's going)</strong></td><td>1:1 Feed</td><td>W/C 19 May</td><td>☐ Post-Qualifier</td></tr>
+      <tr><td>11</td><td><strong>Finals Day Coverage</strong></td><td>Stories + feed</td><td>23 May</td><td>☐ Day-of</td></tr>
+      <tr><td>12</td><td><strong>Champions Announcement</strong></td><td>1:1 Feed + Story</td><td>23–24 May</td><td>☐ Day-of</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+  <div class="section-title">Content Calendar</div>
+
+  <!-- WEEK 1 -->
+  <div class="week-header"><h3>Week 1. W/C 14 April</h3><div class="week-theme">LAUNCH. Announce & Build Excitement</div></div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">Tue 15 April</span></div>
+    <div class="ptitle">🚀 ANNOUNCEMENT. Studio Games 2026 is HERE</div>
+    <div class="pvisual"><strong>Visual:</strong> Studio Games 2026 announcement graphic: lime green hero, bold text, key dates.</div>
+    <div class="pcaption">IT'S TIME TO TEST YOURSELF. 🟢
+
+S30 Studio Games 2026 is officially ON.
+
+This is the biggest Studio Games yet. for the first time, it's Studio vs Studio. Your studio's best will qualify to compete against our other S30 studios on Finals day.
+
+📅 Qualifier: Saturday 16 May · 8am
+🏆 Finals: Saturday 23 May · 10am
+
+6 divisions. 3 workouts. One champion studio.
+
+Sign-ups are OPEN. Drop your training partner in the comments 👇 or head to the link in bio to register.
+
+#StudioGames2026 #S30 #StudioGames #TestYourself</div>
+  </div>
+  <div class="post-card story">
+    <div class="post-meta"><span class="ptag story">Story</span><span class="pdate">Tue 15 April</span></div>
+    <div class="ptitle">Story Series. Announce + Sign Up</div>
+    <div class="pcaption">Slide 1: "IT'S BACK. BIGGER." dark bg, lime text | Slide 2: Qualifier 16 May · Finals 23 May · 6 Divisions | Slide 3: "Are you in? Sign up → link in bio"</div>
+  </div>
+  <div class="post-card edm">
+    <div class="post-meta"><span class="ptag edm">EDM</span><span class="pdate">Wed 16 April</span></div>
+    <div class="ptitle">Email #1. Launch Email (see EDM section below)</div>
+    <div class="pvisual">Send to all active members. Full copy in EDM section.</div>
+  </div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">Thu 17 April</span></div>
+    <div class="ptitle">Divisions Explained. Open vs Pro</div>
+    <div class="pcaption">Not sure which division is for you? Here's the breakdown 👇
+
+OPEN 🟢. You're keen, you're showing up, and you want to compete. Open is the perfect entry point. No experience competing? Doesn't matter.
+
+PRO ⚫. You've been putting in the work and you want to test yourself at the highest level. Heavier loads, higher standards, no excuses.
+
+Both divisions qualify for Finals.
+
+Which one's you? Tag your training partner 👇
+
+#StudioGames2026 #S30 #OpenVsPro</div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-header"><h3>Week 2. W/C 21 April</h3><div class="week-theme">BUILD. Drive Sign-Ups, Create FOMO</div></div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">Mon 21 April</span></div>
+    <div class="ptitle">Why Compete?. Member Motivation</div>
+    <div class="pcaption">You don't compete because you think you'll win.
+You compete because you want to find out what you're made of.
+
+Studio Games isn't just a competition. it's proof of everything you've built since you walked through our doors.
+
+Sign-ups close 9 May. Don't miss it. → Link in bio
+
+#StudioGames2026 #S30 #CompeteWithPurpose</div>
+  </div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">Fri 25 April</span></div>
+    <div class="ptitle">Studio vs Studio. Finals Hype</div>
+    <div class="pcaption">NSW vs QLD 🆚
+
+This year Studio Games goes inter-studio for the first time. Qualifier winners will go head to head at Finals.
+
+NSW Finals → Surry Hills · QLD Finals → Mermaid Beach
+
+Which studio is going to dominate? 👀
+
+There's only one way to find out. Link in bio.
+
+#StudioGames2026 #NSWvsQLD #S30Studios</div>
+  </div>
+
+  <!-- WEEK 3–4 -->
+  <div class="week-header"><h3>Weeks 3–4. W/C 28 Apr & 5 May</h3><div class="week-theme">SUSTAIN. Keep Momentum, Countdown</div></div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">W/C 28 April</span></div>
+    <div class="ptitle">Training Tips. How to Prepare</div>
+    <div class="pcaption">Studio Games is 3 weeks away. Here's how to prepare 👇
+
+💪 STRONGER. Work up to heavy Deadlift and Push Press singles this week. Know your numbers.
+
+🫀 MAKE ME SWEAT. Practice pacing on the bike and ski. Don't blow up in the first 2 minutes.
+
+🔥 SICKO MODE. Practice Hang Clean &amp; Jerks under fatigue. Work on your kicksits — synchro timing with your partner matters. Every second in Part 2 counts.
+
+The programming has been preparing you for this. Trust the process.
+
+#StudioGames2026 #S30 #TrainWithPurpose</div>
+  </div>
+  <div class="post-card reel">
+    <div class="post-meta"><span class="ptag reel">Reel</span><span class="ptag both">IG + FB</span><span class="pdate">W/C 5 May</span></div>
+    <div class="ptitle">Hype Reel. 2 Week Countdown</div>
+    <div class="pvisual"><strong>Visual brief:</strong> Fast-cut training footage. Text overlays: "2 WEEKS." / "ARE YOU READY?" / "STUDIO GAMES 2026." Punchy music. End frame: dates + logo.</div>
+    <div class="pcaption">2 weeks. ⏰
+
+You've been putting in the work. Now it's time to show what you've got.
+
+Studio Games 2026. Qualifier: 16 May 🟢
+
+Sign-ups close 9 May. Link in bio.
+
+#StudioGames2026 #S30 #2WeeksOut</div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-header"><h3>Week 5. W/C 12 May</h3><div class="week-theme">FINAL PUSH. Workout Reveals, Amp Up</div></div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Carousel</span><span class="ptag both">IG + FB</span><span class="pdate">Tue 12 May</span></div>
+    <div class="ptitle">Workout Reveals. All 3 WODs</div>
+    <div class="pcaption">The workouts are OUT. 🟢⚫
+
+WOD 1. STRONGER 💀 1RM Deadlift + Push Press. Max weight. No hiding.
+WOD 2. MAKE ME SWEAT 🫀 Bike + Ski + Row. Pairs chipper. Race the clock.
+WOD 3. SICKO MODE 🔥 30 Hang Clean &amp; Jerks. Then max synchro kicksits. The clock is always running.
+
+Saturday. 8am. [Your Studio]. See you on the floor.
+
+#StudioGames2026 #WorkoutReveal #S30</div>
+  </div>
+  <div class="post-card story">
+    <div class="post-meta"><span class="ptag story">Stories</span><span class="pdate">Thu 14 May</span></div>
+    <div class="ptitle">Eve-of-Event Hype Stories</div>
+    <div class="pcaption">Slide 1: "TOMORROW. 8AM." | Slide 2: Quick WOD recap | Slide 3: "Get your sleep in. Eat your food. It's time." | Slide 4: "Tag your partner and let them know you're READY 👊"</div>
+  </div>
+  <div class="post-card edm">
+    <div class="post-meta"><span class="ptag edm">EDM</span><span class="pdate">Thu 14 May</span></div>
+    <div class="ptitle">Email #2. Day-Before Reminder (see EDM section below)</div>
+    <div class="pvisual">Send to all registered competitors. Includes heat times, what to bring, start time details.</div>
+  </div>
+
+  <!-- QUALIFIER + FINALS -->
+  <div class="week-header"><h3>Qualifier Day. Sat 16 May</h3><div class="week-theme">LIVE COVERAGE</div></div>
+  <div class="post-card story">
+    <div class="post-meta"><span class="ptag story">Stories (all day)</span><span class="pdate">Sat 16 May</span></div>
+    <div class="ptitle">Live Day Coverage</div>
+    <div class="pcaption">Morning: Athletes arriving, warm-up energy. Mid-day: Action shots, WOD moments, judge clips. Afternoon: Leaderboard reveals, closing ceremony, winners announcement, group photo.</div>
+  </div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">Sat 16 May (evening)</span></div>
+    <div class="ptitle">Qualifier Results Post</div>
+    <div class="pcaption">QUALIFIER DAY. DONE. 🟢
+
+What an unbelievable day of competition.
+
+[Division winners listed]
+
+These pairs now represent [Studio Name] at the S30 Studio Games Finals. Saturday 23 May, 10am at Surry Hills. 🔥
+
+Congratulations to every single athlete who competed today. See you at Finals. ⚡
+
+#StudioGames2026 #S30 #QualifierDay #FinalsWeek</div>
+  </div>
+  <div class="week-header"><h3>Finals Week. W/C 19 May & Finals Day 23 May</h3><div class="week-theme">FINALS HYPE + CELEBRATION</div></div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">W/C 19 May</span></div>
+    <div class="ptitle">"Who's Going". Finals Hype Post</div>
+    <div class="pcaption">The qualifiers are in. The Finals are SET. 🟢⚫
+
+This Saturday, the best from [Your Studio] go head to head at the S30 Studio Games Finals.
+
+One studio. Six divisions. All the glory.
+
+Come cheer them on. Surry Hills, Saturday 23 May, 10am. 🏆
+
+#StudioGames2026 #StudioVsStudio #S30Finals</div>
+  </div>
+  <div class="post-card">
+    <div class="post-meta"><span class="ptag feed">Feed</span><span class="ptag both">IG + FB</span><span class="pdate">23–24 May</span></div>
+    <div class="ptitle">Champions Announcement</div>
+    <div class="pcaption">STUDIO GAMES 2026 CHAMPIONS. 🏆🟢
+
+[Winners by division]
+
+To every athlete who qualified and competed at Finals. You represented [Studio Name] with everything you had.
+
+This is what S30 is about. Community. Competition. Growth.
+
+See you next year. 💚
+
+#StudioGames2026 #Champions #S30 #StudioGames</div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-title">EDM Templates</div>
+
+  <div class="edm-block">
+    <div class="edm-head">
+      <div class="elabel">Email 1 of 2</div>
+      <h3>Launch Email. Announce & Drive Sign-Ups</h3>
+    </div>
+    <div class="edm-body">
+      <div class="edm-meta"><strong>Subject:</strong> 🟢 Studio Games 2026 is ON. Are you in?</div>
+      <div class="edm-meta" style="margin-bottom:20px;"><strong>Preview:</strong> Qualifier: 16 May. Finals: 23 May. Sign-ups are open now.</div>
+      <div class="edm-copy">
+        <p>Hey [First Name],</p>
+        <p>It's that time of year again. and this time, it's bigger than ever.</p>
+        <p><strong>S30 Studio Games 2026 is officially here.</strong></p>
+        <p>For the first time, Studio Games runs as a true inter-studio competition. You'll compete at your home studio on Qualifier Day, and the top pairs from each division will go head-to-head against our other S30 studios at Finals.</p>
+        <p><strong>Here's what you need to know:</strong><br>
+        📅 Qualifier Day: Saturday 16 May, at your studio, 8:00am<br>
+        🏆 Finals Day: Saturday 23 May. Studio vs Studio, 10:00am<br>
+        ⏱ Three workouts: Strength · Conditioning · Skill<br>
+        👥 Pairs format. find your training partner and sign up together</p>
+        <p><strong>Two divisions:</strong><br>
+        OPEN: For all levels. Challenging but accessible for any S30 member.<br>
+        PRO: For our most competitive members. Higher loads, higher standards.</p>
+        <p>Both divisions qualify for Finals. Winners receive trophies and the right to call themselves Studio Games Champions.</p>
+        <p>Sign-ups close <strong>Friday 9 May</strong>. Don't miss out.</p>
+        <div class="edm-cta">SIGN UP FOR STUDIO GAMES →</div>
+        <p style="margin-top:16px;">Questions? Chat to one of our coaches on the floor.<br><br>Let's go. 🟢<br><br><em>[Coach/Owner Name] · [Studio Name]. S30</em></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="edm-block">
+    <div class="edm-head">
+      <div class="elabel">Email 2 of 2</div>
+      <h3>Day-Before Email. Final Details for Registered Athletes</h3>
+    </div>
+    <div class="edm-body">
+      <div class="edm-meta"><strong>Subject:</strong> ⚡ Tomorrow is the day: everything you need to know</div>
+      <div class="edm-meta" style="margin-bottom:20px;"><strong>Preview:</strong> Doors open 7:45am. Your heat times, what to bring, and last-minute tips.</div>
+      <div class="edm-copy">
+        <p>Hey [First Name],</p>
+        <p>Tomorrow is Studio Games 2026. You've put in the work. Now it's time to show it.</p>
+        <p><strong>Tomorrow's details:</strong><br>
+        📍 [Studio Name + Address]<br>
+        🕗 Doors open: 7:45am<br>
+        🏁 Kicks off: 8:00am sharp<br>
+        ⏱ Estimated finish: ~12:00–1:00pm</p>
+        <p><strong>The three workouts:</strong><br>
+        WOD 1. STRONGER: 6 mins 1RM Push Press, 1 min transition, 6 mins 1RM Deadlift. Shared bar, alternate lifts.<br>
+        WOD 2. MAKE ME SWEAT: Max cals tag in tag out on your machine of choice. Open 6 min / Pro 8 min.<br>
+        WOD 3. SICKO MODE: 30 Hang Clean &amp; Jerks tag in tag out, then max synchro kicksits. 8 min cap.</p>
+        <p><strong>What to bring:</strong><br>
+        ✅ Lifting shoes (recommended for WOD 1)<br>
+        ✅ Water bottle · Training gear · Your training partner</p>
+        <p><strong>Reminders:</strong><br>
+       . Arrive by 7:45am. We start at 8:00am on the dot.<br>
+       . Heat order is on the board when you arrive.<br>
+       . Listen to the Head Judge brief before your heat.<br>
+       . Support your fellow competitors. community first.</p>
+        <p>Qualifier winners advance to Finals: <strong>Saturday 23 May, 10am</strong> at Surry Hills (NSW) / Mermaid Beach (QLD).</p>
+        <p>Go get it. 🟢🏆<br><br><em>[Coach/Owner Name] · [Studio Name]. S30</em></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+  function showTab(name, btn) {
+    var panels = document.querySelectorAll('.panel');
+    for (var i = 0; i < panels.length; i++) {
+      panels[i].style.display = 'none';
+    }
+    var btns = document.querySelectorAll('.tab-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].classList.remove('active');
+    }
+    var target = document.getElementById('panel-' + name);
+    if (target) { target.style.display = 'block'; }
+    btn.classList.add('active');
+    var bar = document.querySelector('.tabs-bar');
+    if (bar) { window.scrollTo({ top: bar.offsetTop - 1, behavior: 'smooth' }); }
+  }
+
+  window.addEventListener('load', function() {
+    var panels = document.querySelectorAll('.panel');
+    for (var i = 0; i < panels.length; i++) {
+      panels[i].style.display = 'none';
+    }
+    var first = document.getElementById('panel-plan');
+    if (first) { first.style.display = 'block'; }
+  });
+</script>
+
+</body>
+</html>
